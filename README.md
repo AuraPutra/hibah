@@ -2,7 +2,6 @@ npm install
 npm install react-data-table-component
 npm install recharts
 npm install styled-components
-npm install react-router-dom
 php artisan migrate
 
 #run

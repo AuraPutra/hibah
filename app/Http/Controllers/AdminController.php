@@ -290,22 +290,6 @@ class AdminController extends Controller
         return redirect('/admin/accounts')->with('success', 'Akun berhasil disimpan.');
     }
 
-    public function deleteItem($table, $id)
-    {
-        try {
-            // Hapus item dari tabel
-            DB::table($table)->where('id', $id)->delete();
-
-            // Flash message sukses
-            return redirect(`/admin/$table`)->with('success', 'Produk berhasil dihapus.');
-        } catch (\Exception $e) {
-            // Flash error jika terjadi masalah
-            session()->flash('error', 'Failed to delete the item.');
-
-            // Redirect dengan flash error
-            return redirect()->back();
-        }
-    }
     public function Settings()
     {
         // Ambil semua data dari tabel settings
@@ -328,5 +312,27 @@ class AdminController extends Controller
         $setting->update(['value' => $request->value]);
 
         return redirect()->back()->with('success', 'Setting berhasil diperbarui');
+    }
+
+    public function deleteItem($table, $id)
+    {
+        try {
+            // Hapus item dari tabel
+            DB::table($table)->where('id', $id)->delete();
+
+            // Flash message sukses
+            session()->flash('success', 'Produk berhasil dihapus.');
+
+            // Cek apakah request dari Inertia untuk return sesuai Inertia
+            if (request()->inertia()) {
+                return redirect()->route('admin.index', $table)->with('success', 'Produk berhasil dihapus.');
+            }
+
+            return redirect(`/admin/$table`)->with('success', 'Produk berhasil dihapus.');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to delete the item.');
+
+            return redirect()->back();
+        }
     }
 }

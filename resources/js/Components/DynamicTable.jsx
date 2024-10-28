@@ -26,6 +26,7 @@ const DynamicTable = ({ data, addNewLink, editLink, columns, table }) => {
         }
     };
 
+
     const actionColumn = {
         name: 'Aksi',
         cell: row => (
