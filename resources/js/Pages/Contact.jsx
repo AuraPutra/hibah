@@ -1,5 +1,6 @@
 import React from 'react';
 import Content from '../components/ContentContact';
+import ContentKritik from '@/Components/ContentKritik';
 import UserLayout from '@/Layouts/UserLayout';
 import { usePage } from '@inertiajs/react';
 
@@ -17,6 +18,7 @@ const Contact = () => {
             <div className='bg-orange-500'>
                 <section className="container mx-auto py-16 px-4 min-h-screen">
                     <Content settings={settings} />
+                    <ContentKritik settings={settings} />
                 </section>
             </div>
         </UserLayout>

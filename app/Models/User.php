@@ -21,7 +21,6 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',       // Menambahkan is_admin
-        'google_id',      // Menambahkan google_id
     ];
 
     /**

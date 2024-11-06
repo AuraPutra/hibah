@@ -71,6 +71,8 @@ const AdminSettings = ({ settings }) => {
                     />
                 </div>
                 Kosongkan Jika Tidak Ada!
+                <br></br>
+                Untuk Whatsapp, gunakan 628xxxxxxx contoh (628515944877)
 
                 <DataTable
                     columns={columns}

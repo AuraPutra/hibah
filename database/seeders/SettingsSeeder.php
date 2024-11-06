@@ -16,7 +16,7 @@ class SettingsSeeder extends Seeder
         // Seed nomor WhatsApp
         Settings::create([
             'key' => 'whatsapp_number',
-            'value' => '6285159320043', // Nomor WhatsApp default
+            'value' => '62888888888', // Nomor WhatsApp default
         ]);
 
         // Seed email

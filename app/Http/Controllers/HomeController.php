@@ -88,7 +88,6 @@ class HomeController extends Controller
         return redirect()->away("https://wa.me/{$whatsappNumber}/?text={$whatsappMessage}");
     }
 
-
     public function ProductDetail($id)
     {
         // Ambil data produk berdasarkan ID
@@ -103,6 +102,31 @@ class HomeController extends Controller
         return Inertia::render('ProductDetail', [
             'product' => $product
         ]);
+    }
+
+    public function sendKritik(Request $request)
+    {
+        // Validasi query parameter kritik
+        $request->validate([
+            'kritik' => 'required|string|max:5000',
+        ]);
+
+        // Ambil nomor WhatsApp dari settings
+        $setting = Settings::where('key', 'whatsapp_number')->first();
+        if (!$setting) {
+            return response()->json(['error' => 'WhatsApp number not found'], 404);
+        }
+        $whatsappNumber = $setting->value;
+
+        // Format pesan WhatsApp
+        $kritik = $request->query('kritik');
+        $whatsappMessage = urlencode("*KRITIK DAN SARAN - RH LAKSAMANA*\n*Pesan*: {$kritik}");
+
+        // Buat URL untuk mengirim pesan ke WhatsApp
+        $whatsappUrl = "https://wa.me/{$whatsappNumber}?text={$whatsappMessage}";
+
+        // Redirect ke URL WhatsApp
+        return redirect()->away($whatsappUrl);
     }
 
 

@@ -16,6 +16,7 @@ Route::get('/catalog', [HomeController::class, 'Catalog']);
 Route::get('/contact', [HomeController::class, 'Contact']);
 Route::get('/product/{id}', [HomeController::class, 'ProductDetail']);
 Route::get('/product/{id}/buy/{quantity}', [HomeController::class, 'ProductBuy']);
+Route::get('/send-kritik/', [HomeController::class, 'sendKritik'])->name('send.kritik');
 
 // Admin Login and Authentication Routes (no middleware required)
 Route::get('/admin-login', function () {
@@ -50,9 +51,8 @@ Route::middleware('App\Http\Middleware\AdminAuth')->group(function () {
     Route::get('/admin/accounts/edit/{id}', [AdminController::class, 'editAccount']);
     Route::post('/admin/accounts/store', [AdminController::class, 'storeAccount']);
 
-    Route::get('/admin/settings', [AdminController::class,'Settings']);
+    Route::get('/admin/settings', [AdminController::class, 'Settings']);
     Route::put('/admin/settings/{id}', [AdminController::class, 'updateSet'])->name('settings.update');
-
 });
 
 

@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'aura22ti@mahasiswa.pcr.ac.id',
             'is_admin' => 1,
         ]);
+
+        $this->call(SettingsSeeder::class);
     }
 }
